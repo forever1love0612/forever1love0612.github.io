@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.User">
+	
+	<resultMap type="com.pdsu.edu.domain.User" id="userResult">
+		<result property="id" column="actor_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+	</resultMap>
+	<select id="userLogin"  parameterType="user" resultMap="userResult">
+		select * from actor 
+		where 
+		 	username=#{username} and password=#{password}
+	</select>
+
+	<select id="selectAllUser" resultMap="userResult">
+		select * from actor 
+ 	</select>
+
+	<select id="findUserById" parameterType="int" resultMap="userResult">
+		select *
+		from actor where actor_id=#{id}
+ 	</select>
+
+	<insert id="insertUser" parameterType="user">
+	 <![CDATA[
+		insert into
+		actor(username,password) values(#{username},#{password})
+		]]>
+ 	</insert>
+
+	<update id="updateUser" parameterType="user">
+		update actor set
+		username=#{username},password=#{password} where actor_id=#{id}
+ 	</update>
+ 	
+	<delete id="deleteUser" parameterType="int">
+		delete from actor where
+		actor_id=#{id}
+	</delete>
+
+</mapper>

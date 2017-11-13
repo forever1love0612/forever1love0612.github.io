@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>	
+	 <constant name="struts.i18n.encoding" value="UTF-8"/>
+	 		<!-- 指定默认编码集 ，作用于HttpServletRequest的setCharacterEncoding（）和freemarker，vilocity的输出 -->
+	<constant name="struts.configuration.xmlreload" value="true"/>
+			<!-- 当struts配置文件修改时是否自动加载 -->
+	<constant name="struts.devMode" value="true"/>
+			<!-- 开发模式下打印详细的错误信息 -->
+	<constant name="struts.ui.theme" value="xhtml"/>
+
+	
+	
+	
+	
+	
+	<package name="user" namespace="/user" extends="struts-default">
+	       <interceptors>  
+            <interceptor name="LoginInterceptors"  
+                class="com.pdsu.edu.interceptors.LoginInterceptors">  
+                <param name="excludeName">user_login</param>  
+                <param name="sessionName">currUser</param>  
+            </interceptor>  
+            <!-- 拦截器栈 -->    
+            <interceptor-stack name="myInterceptors">  
+                <interceptor-ref name="LoginInterceptors"></interceptor-ref>  
+                <interceptor-ref name="defaultStack"></interceptor-ref>  
+            </interceptor-stack>  
+        </interceptors> 
+           <default-interceptor-ref name="myInterceptors"></default-interceptor-ref>  
+                   <global-results>  
+            <!-- 当返回login视图名时，转入/login.jsp页面 -->    
+            <result name="loginvalidate">/notlogin.jsp</result>  
+        </global-results> 
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="success" type="redirectAction">user_queryAllUser.action</result>
+			<result name="welcome">/welcome.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="userList">/userList.jsp</result>
+			<result name="addUser">/userAdd.jsp</result>
+			<result name="updateUser">/userUpdate.jsp</result>
+		</action>
+		
+	</package>
+		<package name="info" namespace="/info" extends="user">
+		<action name="info_*" class="infoAction" method="{1}">
+			<result name="infoList">/infoList.jsp</result>
+			<result name="state">/currentState.jsp</result>
+			<result name="allState">/stateList.jsp</result>
+		</action>
+	</package>
+</struts>    

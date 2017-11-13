@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.Info">
+	
+	<resultMap type="com.pdsu.edu.domain.Info" id="infoResult">
+		<result property="sendTime" column="sendtime" />
+		<result property="infoSent" column="infosent" />
+	    <result property="getTime" column="gettime" />
+		<result property="infoGot" column="infogot" />
+		<result property="timeCost" column="timecost" />
+	</resultMap>
+
+	<insert id="insertInfo" parameterType="info">
+	 <![CDATA[
+		insert into
+		info(sendtime,infosent,gettime,infogot,timecost) values(#{sendTime},#{infoSent},#{getTime},#{infoGot},#{timeCost})
+		]]>
+ 	</insert>
+ 	
+ 	<select id="selectAllInfo" resultMap="infoResult">
+		select sendtime,infosent,gettime,infogot,timecost from info
+ 	</select>
+
+</mapper>

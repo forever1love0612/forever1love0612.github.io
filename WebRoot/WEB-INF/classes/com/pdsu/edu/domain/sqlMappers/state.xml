@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pdsu.edu.domain.State">
+	
+	<resultMap type="com.pdsu.edu.domain.State" id="stateResult">
+		<result property="time" column="time" />
+		<result property="led1" column="LED1" />
+		<result property="led2" column="LED2" />
+		<result property="led3" column="LED3" />
+		<result property="led4" column="LED4" />
+		<result property="led5" column="LED5" />
+	</resultMap>
+ 	
+ 	<select id="selectAllState" resultMap="stateResult">
+		select time,LED1,LED2,LED3,LED4,LED5 from state
+ 	</select>
+
+</mapper>

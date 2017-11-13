@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="user" type="com.pdsu.edu.domain.User"/>
+        <typeAlias alias="info" type="com.pdsu.edu.domain.Info"/>
+        <typeAlias alias="state" type="com.pdsu.edu.domain.State"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/user.xml" />
+		<mapper resource="com/pdsu/edu/domain/sqlMappers/info.xml" />
+        <mapper resource="com/pdsu/edu/domain/sqlMappers/state.xml" />
+	</mappers>
+</configuration>	
